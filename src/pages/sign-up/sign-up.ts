@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SignupProvider } from '../../providers/signup/signup';
 
 /**
  * Generated class for the SignUpPage page.
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SignUpPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  signUp
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public signUpProvider: SignupProvider) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignUpPage');
+    this.signUpProvider.signUp()
+    .subscribe(
+      (data)=> {this.signUp = data;},
+      (error)=>{console.log(error);}
+    )
   }
-
 }
